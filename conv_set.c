@@ -21,7 +21,6 @@ int main(int argc, char** argv){
 	char koi8r [] = "KOI8-R";
 	char cp1251 [] = "cp1251";
 	char cp866 [] = "cp866";
-	char stringToSend[BUFFER_LENGTH];
 
 	if(strcmp(cp866,argv[1]) == 0)
 		input_encoding = 1;
@@ -41,9 +40,6 @@ int main(int argc, char** argv){
 
 	ioctl(fd, WR_VALUE, (int32_t*) &input_encoding);
 	ioctl(fd, WR_VALUE_2, (int32_t*) &output_encoding);
-
-	ioctl(fd, RD_VALUE, (int32_t*) &value);
-	ioctl(fd, RD_VALUE_2, (int32_t*) &value);
 
 	ret = read(fd, message, BUFFER_LENGTH);
 	if (ret < 0){return errno;}
